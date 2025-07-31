@@ -246,7 +246,6 @@
   width: 540px;
   min-width: 320px;
   max-width: 56vw;
-  background: #222;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -270,7 +269,6 @@
   aspect-ratio: 9/16;
   border-radius: 0 12px 12px 0;
   object-fit: contain;
-  background: #222;
 }
 .modal-close {
   position: absolute;
@@ -287,6 +285,19 @@
   .modal-photo-placeholder { width: 180px; height: 320px; }
   .modal-photo img { border-radius: 0 0 12px 12px; }
 }
+  #modalPhotoImg {
+    width: 100%;
+    max-width: 100%;
+    max-height: 120vh;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+    opacity: 1;
+  }
+  #modalPhotoImg:hover {
+    transform: scale(1.05);
+  }
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
   <link rel="icon" type="image/jpeg" href="/media/PP.JPG">
@@ -307,7 +318,7 @@
 
     <div class="section-title">My Journey</div>
     <div class="timeline">
-      <div class="timeline-item" onclick="openTimelineModal('Photography', 'I started photography in 2018, focusing on portraits, events, and landscapes. I use Adobe Lightroom for editing and have covered over 50 events, including school and community projects. My favorite gear is the Sony A7 series.')">
+      <div class="timeline-item" onclick="openTimelineModal('Photography', 'I started photography in 2018, focusing on portraits, events, and landscapes. I use Adobe Lightroom for editing and have covered over 50 events, including school and community projects. My favorite gear is the Sony A7 series.', ['/media/Popup1.JPG', '/media/Popup2.jpg', '/media/Popup3.jpg'])">
         <span class="timeline-icon"><i class="mdi mdi-camera"></i></span>
         <div class="timeline-content">
           <div class="timeline-title">Photography</div>
@@ -376,19 +387,58 @@
       <!-- Title and description will be injected here -->
     </div>
     <div class="modal-photo">
-      <div class="modal-photo-placeholder">Photo</div>
+      <img id="modalPhotoImg" src="" alt="Slideshow Photo" style="display: none; cursor: pointer;">
     </div>
   </div>
 </div>
 <script>
-function openTimelineModal(title, desc) {
+let currentPhotoIndex = 0;
+let currentPhotoList = [];
+
+function openTimelineModal(title, desc, photos) {
   document.getElementById('timelineModalBg').classList.add('active');
   document.getElementById('modalInfo').innerHTML =
-    `<div class="modal-title">${title}</div><div class="modal-desc">${desc}</div>`;
+    `<div class="modal-title">${title}</div>\n<br><br>\n<div class="modal-desc">${desc}</div>`;
+
+  currentPhotoList = Array.isArray(photos) ? photos : [];
+  currentPhotoIndex = 0;
+
+  showPhoto();
+  // No more arrow buttons to show/hide
 }
+
+function showPhoto() {
+  const img = document.getElementById('modalPhotoImg');
+  if (currentPhotoList.length > 0) {
+    img.src = currentPhotoList[currentPhotoIndex];
+    img.style.display = '';
+  } else {
+    img.style.display = 'none';
+  }
+}
+
+function changePhoto(direction) {
+  if (currentPhotoList.length === 0) return;
+  currentPhotoIndex = (currentPhotoIndex + direction + currentPhotoList.length) % currentPhotoList.length;
+  showPhoto();
+}
+
 function closeTimelineModal(e) {
   document.getElementById('timelineModalBg').classList.remove('active');
 }
+
+// Remove DOMContentLoaded arrow button hiding code
+// Add click/tap navigation to the image
+const modalPhotoImg = document.getElementById('modalPhotoImg');
+modalPhotoImg.addEventListener('click', function(event) {
+  const rect = modalPhotoImg.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  if (x < rect.width / 2) {
+    changePhoto(-1); // Left side: previous
+  } else {
+    changePhoto(1); // Right side: next
+  }
+});
 </script>
 </body>
 </html>
