@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Rioli | Links & Projects</title>
+  <style>
+    :root {
+      --blue-dark: #0a192f;
+      --blue: #1e3a5c;
+      --blue-light: #3b82f6;
+      --blue-lighter: #60a5fa;
+      --text: #e0e7ef;
+      --card-bg: #162447;
+      --link-hover: #2563eb;
+    }
+    body {
+      background: var(--blue-dark);
+      color: var(--text);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 400px;
+      width: 100%;
+      margin: 40px 0;
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(30,58,92,0.2);
+      padding: 32px 24px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: var(--blue-dark);
+      margin-bottom: 16px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .bio {
+      font-size: 1.05rem;
+      color: var(--blue-lighter);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-radius: 10px;
+      padding: 14px 0;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 8px rgba(30,58,92,0.08);
+    }
+    .link-btn:hover {
+      background: var(--link-hover);
+      color: #fff;
+    }
+    .projects {
+      width: 100%;
+      margin-top: 8px;
+    }
+    .projects-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--blue-lighter);
+      letter-spacing: 1px;
+    }
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .project-card {
+      background: var(--blue);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text);
+      box-shadow: 0 1px 4px rgba(30,58,92,0.08);
+      transition: background 0.2s;
+    }
+    .project-card:hover {
+      background: var(--link-hover);
+    }
+    .project-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+    .project-desc {
+      font-size: 0.97rem;
+      color: var(--blue-lighter);
+    }
+    @media (max-width: 500px) {
+      .container {
+        max-width: 98vw;
+        padding: 18px 4vw 18px 4vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="avatar">R</div>
+    <h1>Rioli</h1>
+    <div class="bio">
+      Hi! I'm Rioli, a developer from Hong Kong 🇭🇰.<br>
+      Welcome to my link hub and project showcase!
+    </div>
+    <div class="links">
+      <a class="link-btn" href="https://github.com/RioLi08123" target="_blank" rel="noopener">GitHub</a>
+      <a class="link-btn" href="https://www.instagram.com/rio_li0812?igsh=MWJodHB1aG1kbGx5ZQ%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+      <a class="link-btn" href="https://www.reddit.com/u/Rioli0812/s/NENH4133sx" target="_blank" rel="noopener">Reddit</a>
+    </div>
+    <div class="projects">
+      <div class="projects-title">Project Showcase</div>
+      <div class="project-list">
+        <div class="project-card">
+          <div class="project-title">Pi-With-UPS</div>
+          <div class="project-desc">Raspberry Pi 4 with UPS 3D Case. <a href="https://github.com/RioLi08123/Pi-With-UPS" target="_blank" style="color:var(--blue-lighter);text-decoration:underline;">View on GitHub</a></div>
+        </div>
+        <div class="project-card">
+          <div class="project-title">layerline.store</div>
+          <div class="project-desc">A simple HTML project. <a href="https://github.com/RioLi08123/layerline.store" target="_blank" style="color:var(--blue-lighter);text-decoration:underline;">View on GitHub</a></div>
+        </div>
+        <!-- Add more projects here -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>
