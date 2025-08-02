@@ -230,8 +230,8 @@
   background: #1e293b;
   color: #f8fafc;
   border-radius: 12px;
-  max-width: 1100px;
-  width: 95vw;
+  max-width: 1400px;
+  width: 98vw;
   max-height: 90vh;
   min-height: 600px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
@@ -249,8 +249,8 @@
   to { opacity: 1; transform: translateY(0);}
 }
 .modal-info {
-  flex: 1;
-  padding: 24px;
+  flex: 2;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -269,13 +269,13 @@
   margin-top: 0.5em;
 }
 .modal-photo {
-  width: 400px;
-  min-width: 280px;
-  max-width: 45vw;
+  width: 350px;
+  min-width: 250px;
+  max-width: 35vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 10px 30px 30px 30px;
 }
 .modal-photo-placeholder {
@@ -336,14 +336,44 @@
   .modal-photo img { border-radius: 0 0 12px 12px; }
 }
   #modalPhotoImg {
+    position: relative;
     width: 100%;
     max-width: 100%;
     max-height: 75vh;
     object-fit: contain;
-    display: block;
-    margin: 0;
     opacity: 1;
     cursor: pointer;
+    transition: opacity 0.3s linear;
+    z-index: 2;
+  }
+  
+  #modalPhotoImg.fade-out {
+    opacity: 0;
+  }
+  
+  .modal-photo {
+    position: relative;
+    width: 100%;
+  }
+  
+  #modalPhotoImgNext {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.3s linear;
+    pointer-events: none;
+    z-index: 1;
+    display: none;
+  }
+  
+  #modalPhotoImg {
+    position: relative;
+    z-index: 2;
   }
   
 
@@ -359,6 +389,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     margin: 0 10px;
+    position: relative;
+    z-index: 10;
   }
   
   .photo-nav-btn:hover {
@@ -372,6 +404,8 @@
     justify-content: center;
     align-items: center;
     margin-top: -100px;
+    position: relative;
+    z-index: 10;
   }
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
@@ -393,42 +427,42 @@
 
     <div class="section-title">My Journey</div>
     <div class="timeline">
-      <div class="timeline-item" onclick="openTimelineModal('Photography', 'I started photography at 12, mostly covering church and school events, as well as landscapes during my travels. I love exploring new places to capture meaningful moments and tell stories through visuals. I shoot with a Canon R5 and edit with Adobe Lightroom. I believe photography can help us see the beauty in ordinary things and inspire others to do the same.', ['/media/Popup1.JPG', '/media/Popup2.jpg', '/media/Popup3.jpg'])">
+      <div class="timeline-item" onclick="openTimelineModal('Photography', 'I started photography at 12, mostly covering church and school events, as well as landscapes during my travels. I love exploring new places to capture meaningful moments and tell stories through visuals. I shoot with a Canon R5 and edit with Adobe Lightroom. I believe photography can help us see the beauty in ordinary things and inspire others to do the same.', ['/media/Popup/Photography/1.JPG', '/media/Popup/Photography/2.jpg', '/media/Popup/Photography/3.jpg'])">
         <span class="timeline-icon"><i class="mdi mdi-camera"></i></span>
         <div class="timeline-content">
           <div class="timeline-title">Photography</div>
           <div class="timeline-desc">Capturing events, landscapes, and moments that tell a story using Canon R5 and Lightroom.</div>
         </div>
       </div>
-      <div class="timeline-item" onclick="openTimelineModal('Live Audio', 'I have worked on live audio for worship sessions at church and various school events. My experience includes FOH and monitor mixing, backstage roles as both a stage manager and stage hand. I am also skilled in audio recording and post-production, with strong knowledge of Logic Pro. I enjoy solving technical problems and ensuring smooth sound delivery in any environment.')">
+      <div class="timeline-item" onclick="openTimelineModal('Live Audio', 'I have worked on live audio for worship sessions at church and various school events. My experience includes FOH and monitor mixing, backstage roles as both a stage manager and stage hand. I am also skilled in audio recording and post-production, with strong knowledge of Logic Pro. I enjoy solving technical problems and ensuring smooth sound delivery in any environment.', ['/media/Popup/Live Audio/1.jpg', '/media/Popup/Live Audio/2.jpg', '/media/Popup/Live Audio/3.jpeg'])">
         <span class="timeline-icon"><i class="mdi mdi-microphone-variant"></i></span>
         <div class="timeline-content">
           <div class="timeline-title">Live Audio</div>
           <div class="timeline-desc">Church and school live sound, Front of House/monitor mixing, stage crew work, and Logic Pro post-production.</div>
         </div>
       </div>
-      <div class="timeline-item" onclick="openTimelineModal('Video Editing', 'I film and edit event coverage, school productions, and cinematic projects. My main tool is DaVinci Resolve, where I handle everything from rough cuts to color grading. I enjoy turning raw footage into compelling stories and have produced highlight reels, promotional videos, and formal presentations for a wide range of audiences. I’ve also worked on school drama performances, sports day events.')">
+      <div class="timeline-item" onclick="openTimelineModal('Video Editing', 'I film and edit event coverage, school productions, and cinematic projects. My main tool is DaVinci Resolve, where I handle everything from rough cuts to color grading. I enjoy turning raw footage into compelling stories and have produced highlight reels, promotional videos, and formal presentations for a wide range of audiences. I\'ve also worked on school drama performances, sports day events.', ['/media/Popup/Video Editing/1.mp4'])">
         <span class="timeline-icon"><i class="mdi mdi-video"></i></span>
         <div class="timeline-content">
           <div class="timeline-title">Video Editing</div>
           <div class="timeline-desc">Filming and editing school productions and cinematic projects with DaVinci Resolve and color grading.</div>
         </div>
       </div>
-             <div class="timeline-item" onclick="openTimelineModal('Live stream', 'I help run live stream for major school events, including talent shows, singing contests, and inter-house volleyball competitions. I manage multi-camera setups, overlays, and real-time audio-video sync using OBS and ATEM Mini. These streams are broadcasted live to classrooms and online platforms, ensuring smooth and professional delivery to the entire school community.')">
+             <div class="timeline-item" onclick="openTimelineModal('Live Stream', 'I help run live stream for major school events, including talent shows, singing contests, and inter-house volleyball competitions. I manage multi-camera setups, overlays, and real-time audio-video sync using OBS and ATEM Mini. These streams are broadcasted live to classrooms and online platforms, ensuring smooth and professional delivery to the entire school community.', ['/media/Popup/Live Stream/1.jpg', '/media/Popup/Live Stream/2.jpg', '/media/Popup/Live Stream/3.jpeg', '/media/Popup/Live Stream/4.jpeg', '/media/Popup/Live Stream/5.jpeg', '/media/Popup/Live Stream/6.jpg', '/media/Popup/Live Stream/7.jpeg', '/media/Popup/Live Stream/8.jpg'])">
         <span class="timeline-icon"><i class="mdi mdi-video"></i></span>
         <div class="timeline-content">
-          <div class="timeline-title">Live stream</div>
+          <div class="timeline-title">Live Stream</div>
           <div class="timeline-desc">I manage multi-camera setups, overlays, and real-time audio-video sync using ATEM Mini Extreme.</div>
         </div>
       </div>
-      <div class="timeline-item" onclick="openTimelineModal('CampusTV Leader', 'As the leader of CampusTV, I coordinate school video productions, manage a team of students, and solve technical issues. I also mentor new members and ensure smooth operation during live broadcasts and recordings.')">
+      <div class="timeline-item" onclick="openTimelineModal('CampusTV Leader', 'As the leader of CampusTV, I coordinate school video productions, manage a team of students, and solve technical issues. I also mentor new members and ensure smooth operation during live broadcasts and recordings.', ['/media/Popup/CampusTV/1.jpeg', '/media/Popup/CampusTV/2.jpeg', '/media/Popup/CampusTV/6.jpg'])">
         <span class="timeline-icon"><i class="mdi mdi-account-group"></i></span>
         <div class="timeline-content">
           <div class="timeline-title">CampusTV Leader</div>
           <div class="timeline-desc">Leading school productions, solving tech issues, and mentoring peers.</div>
         </div>
       </div>
-      <div class="timeline-item" onclick="openTimelineModal('3D Design & Printing', 'I designed and built an air quality sensor and purifier using Fusion 360 and FDM 3D printing. My projects include custom enclosures, functional prototypes, and creative gadgets for school and personal use.')">
+      <div class="timeline-item" onclick="openTimelineModal('3D Design & Printing', 'I designed and built an air quality sensor and purifier using Fusion 360 and FDM 3D printing. My projects include custom enclosures, functional prototypes, and creative gadgets for school and personal use.', ['/media/Popup/3D Design & Printing/1.jpeg'])">
         <span class="timeline-icon"><i class="mdi mdi-cube-scan"></i></span>
         <div class="timeline-content">
           <div class="timeline-title">3D Design & Printing</div>
@@ -439,7 +473,7 @@
       <div class="timeline-playhead">
         <span class="playhead-dot"></span>
       </div>
-      <div class="timeline-item" onclick="openTimelineModal('Lighting Control', 'I am currently learning MA3 for stage and event lighting design and control. My goal is to master dynamic lighting for live performances and create visually stunning effects for school productions.')">
+      <div class="timeline-item" onclick="openTimelineModal('Lighting Control', 'I am currently learning MA3 for stage and event lighting design and control. My goal is to master dynamic lighting for live performances and create visually stunning effects for school productions.', ['/media/Popup/Lighting Control/1.mov'])">
         <span class="timeline-icon"><i class="mdi mdi-lightbulb-on-outline"></i></span>
         <div class="timeline-content">
           <div class="timeline-title">Lighting Control <span style="font-size:0.9em;color:var(--accent);">(still learning)</span></div>
@@ -465,6 +499,7 @@
     </div>
     <div class="modal-photo">
       <img id="modalPhotoImg" src="" alt="Slideshow Photo">
+      <img id="modalPhotoImgNext" src="" alt="Next Slideshow Photo">
       <div class="photo-nav-container">
         <button class="photo-nav-btn prev-btn" onclick="changePhoto(-1)"><i class="mdi mdi-chevron-left"></i></button>
         <button class="photo-nav-btn next-btn" onclick="changePhoto(1)"><i class="mdi mdi-chevron-right"></i></button>
@@ -475,6 +510,8 @@
 <script>
 let currentPhotoIndex = 0;
 let currentPhotoList = [];
+let autoAdvanceTimer = null;
+let autoAdvanceInterval = 3000; // 3 seconds between photos
 
 function openTimelineModal(title, desc, photos) {
   const modalBg = document.getElementById('timelineModalBg');
@@ -491,7 +528,7 @@ function openTimelineModal(title, desc, photos) {
   currentPhotoIndex = 0;
 
   showPhoto();
-  // No more arrow buttons to show/hide
+  startAutoAdvance();
 }
 
 function showPhoto() {
@@ -504,15 +541,65 @@ function showPhoto() {
   }
 }
 
-function changePhoto(direction) {
+function changePhotoWithFade(direction) {
   if (currentPhotoList.length === 0) return;
-  currentPhotoIndex = (currentPhotoIndex + direction + currentPhotoList.length) % currentPhotoList.length;
-  showPhoto();
+  
+  const currentImg = document.getElementById('modalPhotoImg');
+  const nextImg = document.getElementById('modalPhotoImgNext');
+  
+  // Calculate next photo index
+  const nextIndex = (currentPhotoIndex + direction + currentPhotoList.length) % currentPhotoList.length;
+  
+  // Load next photo in the background image
+  nextImg.src = currentPhotoList[nextIndex];
+  
+  // Start crossfade: fade out current, fade in next simultaneously
+  currentImg.style.opacity = '0';
+  nextImg.style.opacity = '1';
+  
+  // After transition completes, swap the images
+  setTimeout(() => {
+    currentPhotoIndex = nextIndex;
+    currentImg.src = currentPhotoList[currentPhotoIndex];
+    currentImg.style.opacity = '1';
+    nextImg.style.opacity = '0';
+  }, 300);
+  
+  // Restart auto-advance timer when manually changing photos
+  restartAutoAdvance();
+}
+
+function changePhoto(direction) {
+  changePhotoWithFade(direction);
+}
+
+function startAutoAdvance() {
+  if (currentPhotoList.length <= 1) return; // Don't auto-advance if only one photo
+  
+  stopAutoAdvance(); // Clear any existing timer
+  autoAdvanceTimer = setInterval(() => {
+    changePhoto(1);
+  }, autoAdvanceInterval);
+}
+
+function stopAutoAdvance() {
+  if (autoAdvanceTimer) {
+    clearInterval(autoAdvanceTimer);
+    autoAdvanceTimer = null;
+  }
+}
+
+function restartAutoAdvance() {
+  stopAutoAdvance();
+  startAutoAdvance();
 }
 
 function closeTimelineModal(e) {
   const modalBg = document.getElementById('timelineModalBg');
   modalBg.classList.remove('active');
+  
+  // Stop auto-advance when closing modal
+  stopAutoAdvance();
   
   // Wait for the fade-out transition to complete before hiding the modal
   setTimeout(() => {
@@ -522,7 +609,21 @@ function closeTimelineModal(e) {
   }, 300);
 }
 
-// Photo navigation removed - no click/tap functionality
+// Pause auto-advance when user interacts with modal
+document.addEventListener('DOMContentLoaded', function() {
+  const modalBg = document.getElementById('timelineModalBg');
+  const modal = document.querySelector('.timeline-modal');
+  
+  // Pause auto-advance when hovering over modal
+  modal.addEventListener('mouseenter', stopAutoAdvance);
+  modal.addEventListener('mouseleave', startAutoAdvance);
+  
+  // Pause auto-advance when clicking on modal
+  modal.addEventListener('click', function() {
+    stopAutoAdvance();
+    setTimeout(startAutoAdvance, 2000); // Resume after 2 seconds
+  });
+});
 </script>
 </body>
 </html>
